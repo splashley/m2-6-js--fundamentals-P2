@@ -25,3 +25,19 @@ let mostPopularFood = [
 // Output them in a tidy top-ten fashion in the console.
 
 // NO for loops (use `forEach` instead)
+
+// create function to add foods into array
+mostPopularFood.insert = function (item, id) {
+  this.splice(item, 0, id);
+};
+
+// add missing foods to array
+mostPopularFood.insert(0, 'bean burritos');
+mostPopularFood.insert(9, 'buffalo-flavored cauliflower');
+
+// for each
+mostPopularFood.forEach((item, id) => {
+  console.log(`${id + 1}: ${item}`);
+})
+
+return mostPopularFood;

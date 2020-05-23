@@ -20,7 +20,7 @@ let inputData = {
   motherAge: 35,
   motherStatus: 'worried',
   motherSuperpower1: null,
-  motherSuperpower1: null,
+  motherSuperpower2: null,
   bestFriendName: 'Mike Wheeler',
   bestFriendAge: 9,
   bestFriendStatus: 'frenetic',
@@ -30,7 +30,7 @@ let inputData = {
   girlfriendAge: 9,
   girlfriendStatus: 'angry',
   girlfriendSuperpower1: 'telepathy',
-  girlfriendSuperpower1: 'multiverse portal sealing',
+  girlfriendSuperpower2: 'multiverse portal sealing',
 };
 
 /*
@@ -86,11 +86,57 @@ For example, the main superpowers array should be:
 ✅ ['can-blink-lights']
 ⛔️ ['can-blink-lights', null]
 */
-
-function transformData(data) {
-  // Your code here
+// deal with the superpowers so null does not appear 
+function superpowersArray(power1, power2) {
+  let powersArray = []
+  if (power1 !== null) {
+    powersArray.push(power1)
+  }
+  if (power2 !== null) {
+    powersArray.push(power2)
+  }
+  return powersArray
 }
 
+
+function transformData(data) {
+  let newData = {
+    name: data.name,
+    age: data.age,
+    status: data.status,
+    address: {
+      streetAddress: data.address1,
+      city: data.addressCity,
+      state: data.addressState,
+      country: data.addressCountry,
+    },
+  }
+
+  // add the superpowers
+  newData.superpowers = superpowersArray(data.superpower1, data.superpower2);
+
+  // relationships
+  let mother = {
+    type: 'mother',
+    name: data.motherName,
+    age: data.motherAge,
+    status: data.motherStatus,
+    superpowers: superpowersArray(data.motherSuperpower1, data.motherSuperpower2),
+  };
+
+  let girlfriend = {
+    type: 'girlfriend',
+    name: data.girlfriendName,
+    age: data.girlfriendAge,
+    status: data.girlfriendStatus,
+    superpowers: superpowersArray(data.girlfriendSuperpower1, data.girlfriendSuperpower2),
+  };
+
+  //add relationships to newData
+  newData.relationships = [mother, girlfriend];
+
+  return newData;
+}
 /*
   `JSON.stringify` is used to "pretty-print" the output, so that it's easy
   to see what it looks like, and debug any problems.

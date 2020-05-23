@@ -19,6 +19,23 @@
 // A) console.log() your object.
 // B) console.log() a few of the values in the object.
 
+
+let myObject = {
+  name: {
+    first: 'Ashley',
+    last: 'Hynes',
+  },
+  age: '29',
+  city: 'Montreal',
+  siblings: 4,
+  monthOfBirth: 'May',
+  occupation: 'QA Analyst',
+  pets: 6,
+  favouriteColour: 'purple'
+}
+
+console.log(myObject);
+
 //-------------------------------------------------
 
 // Exercise A
@@ -45,9 +62,15 @@
 //     - Actors
 
 // HINT: Most movies have multiple actors. What data-structure do we use to
-// represent a collection of similar things?
+// represent a collection of similar things? AN ARRAY
 
-let favoriteMovie = {};
+let favoriteMovie = {
+  title: 'Napoleon Dynamite',
+  director: 'Jared Hess',
+  yearReleased: 2004,
+  ratings: '6.9/10',
+  actors: ['Jon Heder', 'Efren Ramirez', 'Jon Gries'],
+};
 
 //-------------------------------------------------
 
@@ -62,8 +85,8 @@ const person = {
   hometown: 'somewhere',
 };
 
-person[age]; // => 26
-person.key; // => "Alyssa P. Hacker"
+console.log(person.age); // => 26
+console.log(person['name']); // => "Alyssa P. Hacker"
 
 //-------------------------------------------------
 
@@ -85,7 +108,7 @@ const alyssa = {
 };
 
 function fullName(person) {
-  // Your code here
+  return `${person.name.first} ${person.name.middle} ${person.name.last}`;
 }
 
 console.log(fullName(alyssa)); // => "Alyssa P. Hacker"
@@ -100,6 +123,9 @@ console.log(fullName(alyssa)); // => "Alyssa P. Hacker"
 // when given the object `{name: {first: "John", last: "Doe"}}`, fix it so that
 // it does.
 
+
+// could not figure out the solution on my own 
+
 const rick = {
   name: {
     first: 'Rick',
@@ -109,7 +135,11 @@ const rick = {
 };
 
 function betterFullName(person) {
-  // Your code here
+  let nameArray = [person.name.first, person.name.middle, person.name.last];
+
+  nameArray = nameArray.filter((name) => typeof name === 'string');
+
+  return nameArray.join(' ');
 }
 
 console.log(betterFullName(rick)); // => "Rick Sanchez"
